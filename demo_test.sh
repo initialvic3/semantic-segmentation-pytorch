@@ -13,12 +13,12 @@ DECODER=$MODEL_NAME/decoder_epoch_20.pth
 if [ ! -e $MODEL_PATH ]; then
   mkdir -p $MODEL_PATH
 fi
-if [ ! -e $ENCODER ]; then
-  wget -P $MODEL_PATH http://sceneparsing.csail.mit.edu/model/pytorch/$ENCODER
-fi
-if [ ! -e $DECODER ]; then
-  wget -P $MODEL_PATH http://sceneparsing.csail.mit.edu/model/pytorch/$DECODER
-fi
+# if [ ! -e $ENCODER ]; then
+#   wget -P $MODEL_PATH http://sceneparsing.csail.mit.edu/model/pytorch/$ENCODER
+# fi
+# if [ ! -e $DECODER ]; then
+#   wget -P $MODEL_PATH http://sceneparsing.csail.mit.edu/model/pytorch/$DECODER
+# fi
 if [ ! -e $TEST_IMG ]; then
   wget -P $RESULT_PATH http://sceneparsing.csail.mit.edu/data/ADEChallengeData2016/images/validation/$TEST_IMG
 fi

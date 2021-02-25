@@ -64,7 +64,8 @@ def test(segmentation_module, loader, gpu):
         img_resized_list = batch_data['img_data']
 
         with torch.no_grad():
-            scores = torch.zeros(1, cfg.DATASET.num_class, segSize[0], segSize[1])
+            scores = torch.zeros(1, cfg.DATASET.num_class,
+                                 segSize[0], segSize[1])
             scores = async_copy_to(scores, gpu)
 
             for img in img_resized_list:
@@ -92,7 +93,7 @@ def test(segmentation_module, loader, gpu):
 
 
 def main(cfg, gpu):
-    torch.cuda.set_device(gpu)
+    # torch.cuda.set_device(gpu)
 
     # Network Builders
     net_encoder = ModelBuilder.build_encoder(
@@ -122,7 +123,7 @@ def main(cfg, gpu):
         num_workers=5,
         drop_last=True)
 
-    segmentation_module.cuda()
+    # segmentation_module.cuda()
 
     # Main loop
     test(segmentation_module, loader_test, gpu)
@@ -182,7 +183,8 @@ if __name__ == '__main__':
         cfg.DIR, 'decoder_' + cfg.TEST.checkpoint)
 
     assert os.path.exists(cfg.MODEL.weights_encoder) and \
-        os.path.exists(cfg.MODEL.weights_decoder), "checkpoint does not exitst!"
+        os.path.exists(
+            cfg.MODEL.weights_decoder), "checkpoint does not exitst!"
 
     # generate testing image list
     if os.path.isdir(args.imgs):
